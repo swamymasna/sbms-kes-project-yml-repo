@@ -1,0 +1,39 @@
+#server properties
+server:
+  port: 9999
+
+#eureka properties
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone : http://localhost:8761/eureka
+
+  instance:
+    instance-id: ${spring.application.name}:${random.value}
+    
+# service name    
+spring:
+  application:
+    name: API-GATEWAY    
+    
+# gateway properties    
+  cloud:
+    gateway:
+      routes[0]:
+        id: EMPLOYEE-SERVICE
+        uri: lb://EMPLOYEE-SERVICE
+        predicates[0]: Path=/api/employees/**
+      routes[1]:
+        uri: lb://DEPARTMENT-SERVICE
+        id: DEPARTMENT-SERVICE
+        predicates[0]: Path=/api/departments/**
+
+#actuator properties
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"    
+        
