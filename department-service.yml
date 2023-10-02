@@ -63,8 +63,7 @@ logging:
 department-service:
   messages:
     department_not_found_exception: 'Department Not Found With Id : %s'
-    department_not_found_by_code_exception: 'Department Deleted Successfully With
-      Code : '
+    department_not_found_by_code_exception: 'Department Not Found With Code : %s'
     delete_department_business_exception: Failed to Delete Department from the Database
     department_deletion_failed: 'Failed to Delete Department from the Database : %s'
     update_department_business_exception: Failed to Update Department into the Database
