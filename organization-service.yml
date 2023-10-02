@@ -63,8 +63,7 @@ logging:
 organization-service:
   messages:
     organization_not_found_exception: 'Organization Not Found With Id : %s'
-    organization_not_found_by_code_exception: 'Organization Deleted Successfully With
-      Code : '
+    organization_not_found_by_code_exception: 'Organization Not Found With Code : %s'
     delete_organization_business_exception: Failed to Delete Organization from the Database
     organization_deletion_failed: 'Failed to Delete Organization from the Database : %s'
     update_organization_business_exception: Failed to Update Organization into the Database
