@@ -1,0 +1,80 @@
+#eureka properties
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone : http://localhost:8761/eureka
+
+  instance:
+    instance-id: ${spring.application.name}:${random.value}
+    
+#circuit breaker properties
+resilience4j.circuitbreaker:
+ instances:
+     EMPLOYEE-SERVICE:
+         registerHealthIndicator: true
+         slidingWindowSize: 10
+         permittedNumberOfCallsInHalfOpenState: 3
+         slidingWindowType: TIME_BASED
+
+#actuator properties
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always
+      
+#zipkin properties      
+  tracing:
+    sampling:
+      probability: 1.0      
+      
+#log4j properties      
+logging:
+  file:
+    name: F:/LogFiles/employee-service.log
+spring:
+
+#datasource properties
+  datasource:
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    url: jdbc:mysql://localhost:3306/kes_db
+    
+#jpa properties    
+  jpa:
+    show-sql: 'true'
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: 'true'
+    database-platform: org.hibernate.dialect.MySQLDialect
+  application:
+    name: EMPLOYEE-SERVICE
+    
+#open-api (swagger-ui)    
+springdoc:
+  api-docs:
+    path: /api-docs
+    
+#server properties    
+server:
+  port: '8081'
+
+
+#ems-app-details
+employee-service:  
+  messages:
+    employee_not_found_exception : "Employee Not Found With Id : %s"
+    employee_deletion_succeeded : "Employee Deleted Successfully With Id : "
+    employee_deletion_failed : "Failed to Delete Employee from the Database"
+    save_employee_business_exception : "Failed to Save Employee into the Database"
+    list_employees_business_exception : "Failed to Fetch Employees From the Database"
+    update_employee_business_exception : "Failed to Update Employee into the Database"
+   

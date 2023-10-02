@@ -1,0 +1,74 @@
+#actuator propeties    
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always
+      
+#zipkin propeties      
+  tracing:
+    sampling:
+      probability: '1.0'
+      
+
+#eureka propeties
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${random.value}
+  client:
+    fetch-registry: 'true'
+    register-with-eureka: 'true'
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+spring:
+#jpa propeties
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: 'true'
+    database-platform: org.hibernate.dialect.MySQLDialect
+    show-sql: 'true'
+    
+#datasource propeties    
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    password: root
+    username: root
+    url: jdbc:mysql://localhost:3306/kes_db
+    
+#app-name    
+  application:
+    name: DEPARTMENT-SERVICE
+    
+#open-api(swagger-ui)propeties    
+springdoc:
+  api-docs:
+    path: /api-docs
+    
+#server propeties    
+server:
+  port: '8082'
+  
+#log4j propeties  
+logging:
+  file:
+    name: F:/LogFiles/department-service.log
+    
+#app-propeties      
+department-service:
+  messages:
+    department_not_found_exception: 'Department Not Found With Id : %s'
+    department_not_found_by_code_exception: 'Department Deleted Successfully With
+      Code : '
+    delete_department_business_exception: Failed to Delete Department from the Database
+    department_deletion_failed: 'Failed to Delete Department from the Database : %s'
+    update_department_business_exception: Failed to Update Department into the Database
+    list_departments_business_exception: Failed to Fetch Departments From the Database
+    department_deletion_succeeded: 'Department Deleted Successfully With Id : %s'
+    save_department_business_exception: Failed to Save Department into the Database
+    
