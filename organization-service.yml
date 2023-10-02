@@ -1,0 +1,73 @@
+#actuator propeties    
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always
+      
+#zipkin propeties      
+  tracing:
+    sampling:
+      probability: '1.0'
+      
+
+#eureka propeties
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${random.value}
+  client:
+    fetch-registry: 'true'
+    register-with-eureka: 'true'
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+spring:
+#jpa propeties
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: 'true'
+    database-platform: org.hibernate.dialect.MySQLDialect
+    show-sql: 'true'
+    
+#datasource propeties    
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    password: root
+    username: root
+    url: jdbc:mysql://localhost:3306/kes_db
+    
+#app-name    
+  application:
+    name: ORGANIZATION-SERVICE
+    
+#open-api(swagger-ui)propeties    
+springdoc:
+  api-docs:
+    path: /api-docs
+    
+#server propeties    
+server:
+  port: '8083'
+  
+#log4j propeties  
+logging:
+  file:
+    name: F:/LogFiles/organization-service.log
+    
+#app-propeties      
+organization-service:
+  messages:
+    organization_not_found_exception: 'Organization Not Found With Id : %s'
+    organization_not_found_by_code_exception: 'Organization Deleted Successfully With
+      Code : '
+    delete_organization_business_exception: Failed to Delete Organization from the Database
+    organization_deletion_failed: 'Failed to Delete Organization from the Database : %s'
+    update_organization_business_exception: Failed to Update Organization into the Database
+    list_organizations_business_exception: Failed to Fetch Organizations From the Database
+    organization_deletion_succeeded: 'Organization Deleted Successfully With Id : %s'
+    save_organization_business_exception: Failed to Save Organization into the Database    
