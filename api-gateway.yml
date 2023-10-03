@@ -29,6 +29,10 @@ spring:
         uri: lb://DEPARTMENT-SERVICE
         id: DEPARTMENT-SERVICE
         predicates[0]: Path=/api/departments/**
+      routes[2]:
+        uri: lb://ORGANIZATION-SERVICE
+        id: ORGANIZATION-SERVICE
+        predicates[0]: Path=/api/organizations/**
 
 #actuator properties
 management:
